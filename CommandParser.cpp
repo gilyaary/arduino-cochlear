@@ -61,7 +61,9 @@ void frameToCodes(uint8_t* emaArray, uint8_t* bits) {
     for(int i=0; i<9; i+=3) {
         //replace a 3 bitcode for 6 bit toen
         int code = (_18_bit_codes>>(18-i-3)) & 7;
-        phase1CodeTotal += code;
+        for(int j=0; j<8; j++) {
+            phase1CodeTotal += ((code>>j) & 1);
+        }
         //printf("Code: %d\n", code);
         int token = getToken(code);
         to = addToBits(bits, to, token, TOKEN_SIZE);
@@ -78,7 +80,9 @@ void frameToCodes(uint8_t* emaArray, uint8_t* bits) {
     for(int i=9; i<18; i+=3) {
         //replace a 3 bitcode for 6 bit toen
         int code = (_18_bit_codes>>(18-i-3)) & 7;
-        phase2CodeTotal += code;
+        for(int j=0; j<8; j++) {
+            phase1CodeTotal += ((code>>j) & 1);
+        }
         //printf("Code: %d\n", code);
         int token = getToken(code);
         to = addToBits(bits, to, token, TOKEN_SIZE); //LSB
