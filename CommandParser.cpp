@@ -29,7 +29,10 @@ void frameToCodes(uint8_t* emaArray, uint8_t* bits) {
     //printf("%d\n", emaArray[3]); //PADS
 
     //18 bit code
+    //5bit electrode MSB, 5bit mode, 8 bit amplitude LSB
     int _18_bit_codes = (emaArray[0]<<13) | (emaArray[1]<<8) | emaArray[2];
+
+
     //printf("%d\n\n", _18_bit_codes);
     for (int i=17; i>=0; i--) {
          //_18_bit_codes >> i)
@@ -47,9 +50,17 @@ void frameToCodes(uint8_t* emaArray, uint8_t* bits) {
     //Phase 1
     to = addToBits(bits, to, SYNC_1_TOKEN, TOKEN_SIZE);
     int phase1CodeTotal = 0;
+    // for(int i=0; i<9; i+=3) {
+    //     //replace a 3 bitcode for 6 bit toen
+    //     int code = (_18_bit_codes>>i) & 7;
+    //     phase1CodeTotal += code;
+    //     //printf("Code: %d\n", code);
+    //     int token = getToken(code);
+    //     to = addToBits(bits, to, token, TOKEN_SIZE);
+    // }
     for(int i=0; i<9; i+=3) {
         //replace a 3 bitcode for 6 bit toen
-        int code = (_18_bit_codes>>i) & 7;
+        int code = (_18_bit_codes>>(18-i-3)) & 7;
         phase1CodeTotal += code;
         //printf("Code: %d\n", code);
         int token = getToken(code);
@@ -66,7 +77,7 @@ void frameToCodes(uint8_t* emaArray, uint8_t* bits) {
     int phase2CodeTotal = 0;
     for(int i=9; i<18; i+=3) {
         //replace a 3 bitcode for 6 bit toen
-        int code = (_18_bit_codes>>i) & 7;
+        int code = (_18_bit_codes>>(18-i-3)) & 7;
         phase2CodeTotal += code;
         //printf("Code: %d\n", code);
         int token = getToken(code);
