@@ -2,72 +2,180 @@
 #include "CommandParser.h"
 
 SPISettings settingsA(1000000, MSBFIRST, SPI_MODE1);
-int bytes_size = 64;
+int bytes_size = 71;
+uint8_t* xxx = (uint8_t*)malloc(1024); 
 
+//^20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;20,28,150,64;
+
+//HIGER TONE
+// uint8_t bytes [] = {
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+  
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000,
+
+//   0b10101011,
+//   0b01101011,
+//   0b11111011,
+//   0b11110110,
+//   0b10101111,
+//   0b01111101,
+//   0b11111011,
+//   0b10110110,
+//   0b00000000
+// };
+
+//LOWER TONE
 uint8_t bytes [] = {
   0b10101011,
   0b01101011,
-  0b11111011,
-  0b11110110,
-  0b10101111,
-  0b01111101,
-  0b11111011,
-  0b10110110,
-  0b00000001,
-
-
-
-  
-
-  
-  0b01010110,
-  0b11010110,
-  0b11110111,
-  0b01101101,
-  0b01011110,
-  0b11110110,
-  0b11101101,
-  0b11101100,
-  0b00000010,
-  0b10101101,
-  0b10110110,
-  0b11101110,
-  0b11011101,
-  0b01011110,
-  0b11111111,
-  0b01111101,
-  0b11101110,
-  0b00000101,
-  0b01010111,
-  0b11011011,
-  0b11011111,
-  0b10110101,
   0b01111011,
-  0b11011111,
-  0b11110111,
-  0b10110000,
-  0b00001010,
+  0b10110110,
   0b10101111,
-  0b11110111,
-  0b10111011,
-  0b01101010,
-  0b11110111,
-  0b11011111,
-  0b01101011,
-  0b01100000,
-  0b00010101,
-  0b01101111,
-  0b01111111,
+  0b01111011,
   0b01110110,
-  0b11010101,
-  0b11101111,
-  0b01111110,
-  0b11111110,
-  0b11000000
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000,
+
+  0b10101011,
+  0b01101011,
+  0b01111011,
+  0b10110110,
+  0b10101111,
+  0b01111011,
+  0b01110110,
+  0b11110110,
+  0b00000000
+
 };
 
-uint8_t data_array [1024] ;
-int data_array_size = 0;// sizeof(bytes);
+
+int data_array_size = 71;// sizeof(bytes);
 
 int CTRL_TX_PIN = 10;
 
@@ -78,8 +186,8 @@ void setup() {
   Serial.begin(115200);
   
   for (int i=0; i<bytes_size; i++) {
-    data_array[i] = bytes[i];
-    Serial.print(data_array[i]);
+    xxx[i] = bytes[i];
+    Serial.print(xxx[i]);
     Serial.println();
   }
 
@@ -87,12 +195,26 @@ void setup() {
   SPI.begin();
 }
 
+bool newData = false;
+
 // the loop routine runs over and over again forever:
 void loop() {
     int FRAME_SIZE = 10 * TOKEN_SIZE + 2 * EXT_SIZE + FRAME_PADS + PHASE_PADS;  
+    
                 
     
     if (Serial.available() > 0) {
+        free(xxx);
+        xxx = (uint8_t*)malloc(1024);
+        xxx[0] = 1;
+        xxx[1] = 2;
+        xxx[2] = 3;
+        xxx[3] = 4;
+        xxx[4] = 5;
+        xxx[5] = 6;
+        xxx[6] = 7;
+        xxx[7] = 8;
+        newData = true;
         String lastCommand = Serial.readStringUntil('\n');
         //String lastCommand = "^5,28,140,64;6,28,145,64;7,28,150,64;8,28,160,64;31,31,155,64;";
         Serial.println(lastCommand);
@@ -129,37 +251,47 @@ void loop() {
                 currentStartIndex = i+1;
                 uint8_t bits [FRAME_SIZE];
 
-                
-
                 string str = frameString.c_str();
                 //Serial.println(String(str.c_str()));
                 
                 parseEma(str, bits);
                 int c =0;
+                
+                // for(int p=FRAME_SIZE-1; p>=0; p--) {
+                //     if(c%6 == 0) {
+                //         Serial.println();        
+                //     }
+                //     Serial.print(bits[p]);
+                //     c+=1;
+                // }
+                
                 for(int p=FRAME_SIZE-1; p>=0; p--) {
-                    if(c%6 == 0) {
-                        Serial.println();        
+                    if(c%8 == 0) {
+                        //Serial.println();        
                     }
                     Serial.print(bits[p]);
                     c+=1;
                 }
+
                 Serial.println();
                 
-                int byteIndex = frameIndex * bytesPerFrame;
+                int byteIndex = 0;//frameIndex * bytesPerFrame;
                 for(int ii=FRAME_SIZE-1; ii>=7; ii-=8) {
                     //Serial.print("FRAME_");
                     //Serial.print(ii);
                     //Serial.println();
-                    data_array[byteIndex] = 0;
+                    xxx[byteIndex] = 0;
                     for(int j=0; j<8; j++) {
                         if (bits[ii-j]) {
-                            data_array[byteIndex] |= 128 >>j;
+                            xxx[byteIndex] |= 128 >>j;
                         }
                         //Serial.print(bits[ii-j]);
                     }
                     
                     Serial.println();
-                    Serial.print(data_array[byteIndex]);
+                    Serial.print(byteIndex);
+                    Serial.print(": ");
+                    Serial.print(xxx[byteIndex]);
                     Serial.println();
 
                     byteIndex += 1;
@@ -185,22 +317,28 @@ void loop() {
 
       uint8_t data [data_array_size] ;  
       for (int i=0; i<data_array_size; i++) {
-          data[i] = data_array[i];
-          // Serial.print(i);
-          // Serial.print(":");
-          // Serial.print(data_array[i]);
-          // Serial.print(i);
-          // Serial.print(",");
+          data[i] = xxx[i];
+          if (newData) {
+            // Serial.print(i);
+            // Serial.print(":");
+            Serial.print(xxx[i]);
+            // Serial.print(i);
+            Serial.print(",");
+          }
           
       }
-      //Serial.println();
+      if (newData) {
+        Serial.println();
+        newData = false;
+      }
+      
       
       SPI.beginTransaction(settingsA);
       digitalWrite(CTRL_TX_PIN, 0);
       SPI.writeBytes(data, data_array_size);
       SPI.endTransaction();
       digitalWrite(CTRL_TX_PIN, 1);
-      //delayMicroseconds(10);
+      delayMicroseconds(2);
     }
     
 }
